@@ -15,8 +15,8 @@ class Flight:
         self.passengers = []
         self.max_capacity = 0
 
-        self.current_airport = ""
-        self.destination_airport = ""
+        self.current_airport = Airport()
+        self.destination_airport = Airport()
         self.flight_date = ""
         self.flight_time = ""
 
@@ -25,4 +25,4 @@ class Passenger:
 
     def __init__(self):
         self.name = ""
-        self.flight = ""
+        self.flight = Flight()
