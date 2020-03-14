@@ -1,6 +1,7 @@
 from airport import Airport
 
 class Flight:
+    # Define constructor
     def __init__(self):
         self.flight_number = 1111
         self.airline = ""
