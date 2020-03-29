@@ -45,9 +45,11 @@ class Airport:
         s = self.name + ":"
         for i in self.flights:
             if i != len(self.flights):
-                s += self.flights[i] + ","
+                s += i.current_airport.name + " -> " + i.destination_airport.name \
+                    + " at " + i.flight_time + " on " + i.flight_date + ","
             else:
-                s += self.flights[i]
+                s += i.current_airport.name + " -> " + i.destination_airport.name \
+                    + " at " + i.flight_time + " on " + i.flight_date
         if len(self.flights) == 0:
             s += " No flights right now"
         return s

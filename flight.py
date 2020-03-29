@@ -4,15 +4,15 @@ class Flight:
     # Define constructor
     def __init__(self):
         self.flight_number = 1111
-        self.airline = ""
+        self.airline = "Pike Airlines"
 
         self.passengers = []
         self.max_capacity = 0
 
         self.current_airport = Airport()
         self.destination_airport = Airport()
-        self.flight_date = ""
-        self.flight_time = ""
+        self.flight_date = "01-01-0000"
+        self.flight_time = "0800"
 
     # Define getters
     def get_flight_number(self):
@@ -63,3 +63,9 @@ class Flight:
 
     def set_flight_time(self, new_flight_time):
         self.flight_time = new_flight_time
+
+    # Define to_string method for flight
+    def __str__(self):
+        s = self.current_airport.name + " -> " + self.destination_airport.name \
+            + " at " + self.flight_time + " on "  + self.flight_date
+        return s

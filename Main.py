@@ -1,28 +1,20 @@
-class Airport:
+# Used for basic testing
+from passenger import Passenger
+from flight import Flight
+from airport import Airport
 
-    def __init__(self):
-        self.name = ""
-        self.flights = []
-        self.max_flights = 0
+def main():
+    airport = Airport()
+    print(airport)
+    flight = Flight()
+    print(flight)
 
+    airport.add_flight(flight)
+    print(airport)
 
-class Flight:
-
-    def __init__(self):
-        self.flight_number = 1111
-        self.airline = ""
-
-        self.passengers = []
-        self.max_capacity = 0
-
-        self.current_airport = Airport()
-        self.destination_airport = Airport()
-        self.flight_date = ""
-        self.flight_time = ""
+    passenger = Passenger(flight)
+    print(passenger)
+    print(passenger.get_flight().get_flight_time())
 
 
-class Passenger:
-
-    def __init__(self):
-        self.name = ""
-        self.flight = Flight()
+main()
