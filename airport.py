@@ -1,7 +1,7 @@
 class Airport:
     # Define constructor
     def __init__(self):
-        self.name = ""
+        self.name = "Airport X"
         self.flights = []
         self.max_flights = 0
 
@@ -39,3 +39,15 @@ class Airport:
     # Define method to remove a flight from the list
     def cancel_flight(self, flight):
         self.flights.remove(flight)
+
+    # Define to_string method
+    def __str__(self):
+        s = self.name + ":"
+        for i in self.flights:
+            if i != len(self.flights):
+                s += self.flights[i] + ","
+            else:
+                s += self.flights[i]
+        if len(self.flights) == 0:
+            s += " No flights right now"
+        return s
