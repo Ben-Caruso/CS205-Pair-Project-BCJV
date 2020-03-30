@@ -51,12 +51,10 @@ class Airport:
     def __str__(self):
         s = self.name + ":"
         for i in self.flights:
+            s += i.current_airport.name + " -> " + i.destination_airport.name \
+                 + " at " + i.flight_time + " on " + i.flight_date
             if i != len(self.flights):
-                s += i.current_airport.name + " -> " + i.destination_airport.name \
-                    + " at " + i.flight_time + " on " + i.flight_date + ","
-            else:
-                s += i.current_airport.name + " -> " + i.destination_airport.name \
-                    + " at " + i.flight_time + " on " + i.flight_date
+                 s+= ","
         if len(self.flights) == 0:
             s += " No flights right now"
         return s
