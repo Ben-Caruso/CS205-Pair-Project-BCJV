@@ -1,9 +1,9 @@
 class Airport:
     # Define constructor
     def __init__(self):
-        self.name = "Airport X"
+        self.name = "Airport_Name"
         self.flights = []
-        self.max_flights = 0
+        self.max_flights = 100
 
     # Define getter for name
     def get_name(self):
@@ -34,12 +34,18 @@ class Airport:
 
     # Define method to add a flight to the list
     def add_flight(self, flight):
-        if len(self.flights) == self.max_flights:
+        if len(self.flights) <= self.max_flights:
             self.flights.append(flight)
+        else:
+            print("Maximum capacity of flights reached: ", self.get_name())
 
     # Define method to remove a flight from the list
     def remove_flight(self, flight):
         self.flights.remove(flight)
+
+    def print_flight(self):
+        for i in self.flights:
+            print(i)
 
     # Define to_string method
     def __str__(self):

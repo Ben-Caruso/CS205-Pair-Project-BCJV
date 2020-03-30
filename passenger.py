@@ -1,10 +1,11 @@
 from flight import Flight
 
+
 class Passenger:
     # Define constructor
-    def __init__(self, flight):
-        self.name = "John Doe"
-        self.flight = flight
+    def __init__(self):
+        self.name = "Passenger_Name"
+        self.flight = Flight()
 
     # Define getters
     def get_name(self):
