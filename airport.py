@@ -34,7 +34,8 @@ class Airport:
 
     # Define method to add a flight to the list
     def add_flight(self, flight):
-        self.flights.append(flight)
+        if len(self.flights) == self.max_flights:
+            self.flights.append(flight)
 
     # Define method to remove a flight from the list
     def cancel_flight(self, flight):
