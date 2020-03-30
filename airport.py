@@ -38,7 +38,7 @@ class Airport:
             self.flights.append(flight)
 
     # Define method to remove a flight from the list
-    def cancel_flight(self, flight):
+    def remove_flight(self, flight):
         self.flights.remove(flight)
 
     # Define to_string method
