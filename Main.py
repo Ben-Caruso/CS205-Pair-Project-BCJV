@@ -6,6 +6,7 @@ from airport import Airport
 import pandas as pd
 import numpy as np
 
+
 def main():
     airport_names = ['JFK', 'LAX', 'ATL', 'DFW']
     # string flight_num, string airline, string date, string time
@@ -18,8 +19,6 @@ def main():
     df = pd.read_csv('baby_names.csv')
     # get name values
     names = df['NAME'].values
-    # pick 400 names with replacement
-    names = names[np.random.choice(len(names), 400)]
     # these will become Passenger()'s
 
     airports = initialize_airports(airport_names)
@@ -37,6 +36,12 @@ def main():
             flight.set_flight_time(flight_info[i][3])
 
     print_data(airports)
+
+    for airport in airports:
+        for flight in airport.get_flights():
+            for i in range(25 + np.random.randint(0, 200)):
+                passenger = Passenger(names[np.random.choice(len(names), 1)])
+                flight.add_passenger(passenger)
 
 
 def initialize_airports(airport_names):

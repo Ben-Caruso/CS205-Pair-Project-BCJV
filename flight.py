@@ -66,6 +66,9 @@ class Flight:
     def set_flight_time(self, new_flight_time):
         self.flight_time = new_flight_time
 
+    def add_passenger(self, passenger):
+        self.passengers.append(passenger)
+
     # Define to_string method for flight
     def __str__(self):
         s = self.airline + " " + self.flight_number + ": " + self.current_airport.name + " -> " + self.destination_airport.name \

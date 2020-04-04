@@ -3,8 +3,8 @@ from flight import Flight
 
 class Passenger:
     # Define constructor
-    def __init__(self):
-        self.name = "Passenger_Name"
+    def __init__(self, name):
+        self.name = name
         self.flight = Flight()
 
     # Define getters
