@@ -43,7 +43,11 @@ class Airport:
 
     # Define method to remove a flight from the list
     def remove_flight(self, flight):
+        # Remove flight from list
         self.flights.remove(flight)
+        # For each passenger on this flight, set flight to None
+        for p in flight.get_passengers():
+            p.set_flight(None)
 
     def print_flight(self):
         for i in self.flights:

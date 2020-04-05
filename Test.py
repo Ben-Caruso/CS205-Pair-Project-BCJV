@@ -23,27 +23,15 @@ class TestModel(unittest.TestCase):
 
         # Initialize flights
         cls.flightLoganToJFK = Flight.airports_to_from(cls.Logan, cls.JFK)
-        #cls.flightJFKToLogan = Flight.airports_to_from(cls.JFK, cls.Logan)
         # Flight 1
         cls.flightLoganToJFK.set_flight_number("UA1161")
         cls.flightLoganToJFK.set_flight_date("04-27-2020")
         cls.flightLoganToJFK.set_flight_time("4:30pm")
         cls.flightLoganToJFK.set_airline("United Airlines")
-        # Flight 2
-        #cls.flightJFKToLogan.set_flight_number("SP9374")
-        #cls.flightJFKToLogan.set_flight_date("04-28-2020")
-        #cls.flightJFKToLogan.set_flight_time("6:30am")
-        #cls.flightJFKToLogan.set_airline("Spirit Airlines")
-
-        # Add passengers to flight
-        #cls.flightJFKToLogan.add_passenger(cls.Julia)
-        #cls.flightJFKToLogan.add_passenger(cls.Jamie)
 
         # Add flights to airport
         cls.Logan.add_flight(cls.flightLoganToJFK)
         cls.JFK.add_flight(cls.flightLoganToJFK)
-        #cls.Logan.add_flight(cls.flightJFKToLogan)
-        #cls.JFK.add_flight(cls.flightJFKToLogan)
 
     @classmethod
     def tearDownClass(cls):
@@ -105,8 +93,43 @@ class TestModel(unittest.TestCase):
         Loganflights = self.Logan.get_incoming_flights()
         self.assertEqual(Loganflights, [self.flightLAXToLogan])
 
+        # Remove flight in order to clean up for next test case
+        self.Logan.remove_flight(self.flightLAXToLogan)
+        self.LAX.remove_flight(self.flightLAXToLogan)
+
     # Test the case that flightJFKtoLogan gets cancelled
-    #def test_flight_three(self):
+    def test_flight_three(self):
+        # Create new flight from JFK to Logan
+        self.flightJFKToLogan = Flight.airports_to_from(self.JFK, self.Logan)
+        self.flightJFKToLogan.set_flight_number("SP9374")
+        self.flightJFKToLogan.set_flight_date("04-28-2020")
+        self.flightJFKToLogan.set_flight_time("6:30am")
+        self.flightJFKToLogan.set_airline("Spirit Airlines")
+        # Add flight to Logan and JFK
+        self.Logan.add_flight(self.flightJFKToLogan)
+        self.JFK.add_flight(self.flightJFKToLogan)
+
+        # Double check that Logan has this flight
+        self.assertEqual([self.flightJFKToLogan], self.Logan.get_incoming_flights())
+
+        # Add a new passenger to flight
+        self.flightJFKToLogan.add_passenger(self.Jamie)
+
+        # Double check that the passenger has this flight and vice versa
+        self.assertEqual([self.Jamie], self.flightJFKToLogan.get_passengers())
+        self.assertEqual(self.Jamie.get_flight(), self.flightJFKToLogan)
+
+        # Now, the flight got cancelled. Remove from airport
+        self.Logan.remove_flight(self.flightJFKToLogan)
+        self.JFK.remove_flight(self.flightJFKToLogan)
+
+        # Check that the airport does not have this flight
+        LoganIncoming = self.Logan.get_incoming_flights()
+        self.assertEqual(len(LoganIncoming), 0)
+
+        # Check that the passenger no longer has this flight as it is cancelled
+        self.assertEqual(self.Jamie.get_flight(), None)
+
 
 
 if __name__ == '__main__':
