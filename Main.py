@@ -21,20 +21,13 @@ def main():
     names = df['NAME'].values
     # these will become Passenger()'s
 
+    # Initialize airports
     airports = initialize_airports(airport_names)
-    for i in range(len(airports)):
-        airports[i].add_flight(Flight())
 
-        flights = airports[i].get_flights()
-        for flight in flights:
-            flight.set_current_airport(airports[i])
-            flight.set_destination_airport(
-                airports[i+1] if i < len(airports)-1 else airports[0])
-            flight.set_flight_number(flight_info[i][0])
-            flight.set_airline(flight_info[i][1])
-            flight.set_flight_date(flight_info[i][2])
-            flight.set_flight_time(flight_info[i][3])
+    # Initialize flights
+    initialize_flights(flight_info, airports)
 
+    # Display the airport data created thus far
     print_data(airports)
 
     for airport in airports:
@@ -58,6 +51,24 @@ def initialize_airports(airport_names):
 
     return airports
 
+
+def initialize_flights(flight_info, airports):
+    # Go through the airports and pass in flight information
+    for i in range(len(airports)):
+        # Create a new flight for this airport
+        airports[i].add_flight(Flight())
+
+        # Get all flights for this airport
+        flights = airports[i].get_flights()
+        # Go through the flights and set all fields
+        for flight in flights:
+            flight.set_current_airport(airports[i])
+            flight.set_destination_airport(
+                airports[i+1] if i < len(airports)-1 else airports[0])
+            flight.set_flight_number(flight_info[i][0])
+            flight.set_airline(flight_info[i][1])
+            flight.set_flight_date(flight_info[i][2])
+            flight.set_flight_time(flight_info[i][3])
 
 def print_data(airports):
     for airport in airports:
