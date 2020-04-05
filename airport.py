@@ -49,6 +49,22 @@ class Airport:
         for i in self.flights:
             print(i)
 
+    # Get all incoming flights
+    def get_incoming_flights(self):
+        incoming = []
+        for f in self.flights:
+            if f.get_destination_airport() == self:
+                incoming.append(f)
+        return incoming
+
+    # Get all outgoing flights
+    def get_outgoing_flights(self):
+        outgoing = []
+        for f in self.flights:
+            if f.get_current_airport() == self:
+                outgoing.append(f)
+        return outgoing
+
     # Define to_string method
     def __str__(self):
         s = self.name + ":"
