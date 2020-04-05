@@ -16,6 +16,22 @@ class Flight:
         self.flight_date = "flight_date"
         self.flight_time = "flight_time"
 
+    @classmethod
+    def airports_to_from(cls, current_airport, destination_airport):
+        # Create flight with given information
+        flight = Flight()
+        flight.set_flight_number("Flight_Number")
+        flight.set_airline("Airline")
+        flight.set_passengers([])
+        flight.set_max_capacity(0)
+        flight.set_current_airport(current_airport)
+        flight.set_destination_airport(destination_airport)
+        flight.set_flight_date("Flight_Date")
+        flight.set_flight_time("Flight_Time")
+        return flight
+
+
+
     # Define getters
     def get_flight_number(self):
         return self.flight_number
@@ -66,8 +82,13 @@ class Flight:
     def set_flight_time(self, new_flight_time):
         self.flight_time = new_flight_time
 
+    # Add/remove passenger from flight
     def add_passenger(self, passenger):
         self.passengers.append(passenger)
+        passenger.set_flight(self)
+
+    def remove_passenger(self, passenger):
+        self.passengers.remove(passenger)
 
     # Define to_string method for flight
     def __str__(self):

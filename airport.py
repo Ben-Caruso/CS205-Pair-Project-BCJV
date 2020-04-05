@@ -34,6 +34,8 @@ class Airport:
 
     # Define method to add a flight to the list
     def add_flight(self, flight):
+        # Validate that the airport has room for another flight and that the flight has this airport
+        # as either a departure or destination location
         if len(self.flights) <= self.max_flights:
             self.flights.append(flight)
         else:
@@ -54,7 +56,7 @@ class Airport:
             s += i.current_airport.name + " -> " + i.destination_airport.name \
                  + " at " + i.flight_time + " on " + i.flight_date
             if i != len(self.flights):
-                 s+= ","
+                s += ","
         if len(self.flights) == 0:
             s += " No flights right now"
         return s
