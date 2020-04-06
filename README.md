@@ -7,7 +7,7 @@ For our object-oriented model of data, we chose to model an airport as well as f
 
 ## Class Breakdown by Entity
 
-Airport: 
+### Airport: 
 
 name: string
 
@@ -15,7 +15,8 @@ flights: list of Flights
 
 max_flights: int
 
-Flight:
+### Flight:
+
 flight_number: string
 
 airline: string
@@ -30,7 +31,7 @@ flight_date: string
 
 flight_time: string
 
-Passenger:
+### Passenger:
 
 name: string
 
