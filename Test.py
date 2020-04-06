@@ -49,7 +49,7 @@ class TestModel(unittest.TestCase):
 # -------------- Testing Functions ----------- #
 
     # Test passenger getting ticket for existing flight
-    def test_flight_one(self):
+    def test_passenger(self):
         # Check that flight1 does not have Ben registered as a passenger
         passengers_flight1 = self.flightLoganToJFK.get_passengers()
         self.assertEqual(len(passengers_flight1), 0)
@@ -64,7 +64,7 @@ class TestModel(unittest.TestCase):
         self.assertEqual(self.Ben.get_flight(), self.flightLoganToJFK)
 
     # Test creation of a new flight from a new airport
-    def test_flight_two(self):
+    def test_flight_creation(self):
         # Create a new airport - LAX
         self.LAX = Airport()
         self.LAX.set_name("LAX")
@@ -98,7 +98,7 @@ class TestModel(unittest.TestCase):
         self.LAX.remove_flight(self.flightLAXToLogan)
 
     # Test the case that flightJFKtoLogan gets cancelled
-    def test_flight_three(self):
+    def test_flight_cancel(self):
         # Create new flight from JFK to Logan
         self.flightJFKToLogan = Flight.airports_to_from(self.JFK, self.Logan)
         self.flightJFKToLogan.set_flight_number("SP9374")
