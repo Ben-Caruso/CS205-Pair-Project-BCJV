@@ -8,21 +8,32 @@ For our object-oriented model of data, we chose to model an airport as well as f
 ## Class Breakdown by Entity
 
 Airport: 
+
 name: string
+
 flights: list of Flights
+
 max_flights: int
 
 Flight:
 flight_number: string
+
 airline: string
+
 passengers: list of Passengers
+
 current_airport: Airport
+
 destination_airport: Airport
+
 flight_date: string
+
 flight_time: string
 
 Passenger:
+
 name: string
+
 flight: Flight
 
 Our unit tests reflect common use scenarios we anticipate for our model. Such scenarios include adding a passenger to a flight, connecting flights with corresponding airports, and dealing with the cancellation of a flight.
